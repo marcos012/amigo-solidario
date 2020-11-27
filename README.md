@@ -1,6 +1,7 @@
 
 
-# <div style="display:flex; justify-content: space-between; align-items: center">Projeto Aplicado - QI<img alt="License" src="https://img.shields.io/badge/license-MIT-red"></div>
+# Projeto Aplicado - QI
+<img alt="License" src="https://img.shields.io/badge/license-MIT-red">
 
 ## Stack
 
