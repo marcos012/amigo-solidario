@@ -1,0 +1,99 @@
+.listagem-container {
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 32px auto;
+}
+
+.listagem-container .title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listagem-container header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+.listagem-container header span {
+    font-size: 20px;
+    margin-left: 24px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.listagem-container header span svg {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.listagem-container header img {
+    height: 64px;;
+}
+
+.listagem-container header a {
+    width: 260px;
+    margin-left: auto;
+    margin-top: 0;
+}
+
+
+.listagem-container .title-container {
+    margin-top: 80px;
+    margin-bottom: 24px;
+}
+
+.listagem-container ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+    list-style: none;
+}
+
+
+.listagem-container ul li {
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.listagem-container ul li button {
+    background: transparent;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    border: 0;
+}
+
+.listagem-container ul li button:hover {
+    opacity: 0.8;
+ }
+
+ .listagem-container ul li strong {
+     display: block;
+     margin-bottom: 16px;
+     color: #41414d;
+ }
+
+ .listagem-container ul li p + strong {
+    margin-top: 32px;
+ }
+
+ .listagem-container ul li p { 
+     color: #737380;
+     line-height: 21px;
+     font-size: 16px;
+ }
+
+ .listagem-container .button {
+    width: 25%;
+}
+.listagem-container .label-sem-itens{
+    text-align: center;
+    font-size: 16px;
+}

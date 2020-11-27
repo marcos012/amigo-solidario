@@ -1,0 +1,46 @@
+.container {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.container h1 {
+    font-size: 32px;
+    width: 100%;
+    margin: 21% 0 9% 0;
+}
+
+.container a {
+    display: block;
+    position: absolute;
+    top: 10%;
+    left: 15%;
+}
+
+.container form {
+    width: 100%;
+    max-width: 450px;
+}
+
+.container form input,
+.container form textarea {
+    margin-top: 8px;
+}
+
+@media (max-width: 735px) {
+    .container a {
+        position: unset;
+        display: flex;
+        margin-top: 20px;
+    }
+    .container h1 {
+        margin: 7% 0 9% 0;
+    }
+}
