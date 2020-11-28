@@ -27,7 +27,7 @@ const CasoDetalhe = (props) => {
                     <div className="card">
                         <p className="caso-data title">{caso?.titulo}</p>
                         <div className="card-content">
-                            <div>
+                            <div className="card-content__descricao">
                                 <label>Descricao:</label>
                                 <p className="caso-data">{caso?.descricao}</p>
                             </div>
@@ -36,6 +36,8 @@ const CasoDetalhe = (props) => {
                                 <p className="caso-data">{caso?.qtd_pessoas}</p>
 
                                 <label>Local:</label>
+                                <p className="caso-data">{caso?.local}</p>
+
                             </div>
                         </div>
                     </div>

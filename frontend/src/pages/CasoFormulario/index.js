@@ -8,6 +8,7 @@ const CasoFormulario = () => {
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [qtd_pessoas, setQtdPessoas] = useState('');
+    const [local, setLocal] = useState('');
 
     const id = localStorage.getItem('id');
 
@@ -15,7 +16,7 @@ const CasoFormulario = () => {
 
     async function cadastrarNovoCaso(e) {
         e.preventDefault();
-        const data = { titulo, descricao, qtd_pessoas };
+        const data = { titulo, descricao, qtd_pessoas, local };
 
         try {
             await api.post('casos', data, {
@@ -35,9 +36,22 @@ const CasoFormulario = () => {
                 </Link>
                 <h1 className="title">Cadastrar novo caso</h1>
                 <form onSubmit={cadastrarNovoCaso}>
-                    <input placeholder="Título do caso" value={titulo} onChange={e => setTitulo(e.target.value)}/>
-                    <textarea placeholder="Descrição" value={descricao} onChange={e => setDescricao(e.target.value)}/>
-                    <input placeholder="Quantidade de pessoas afetadas" value={qtd_pessoas} onChange={e => setQtdPessoas(e.target.value)}/>
+                    <div className="espacamento">
+                        <span>Título</span>
+                        <input value={titulo} onChange={e => setTitulo(e.target.value)}/>
+                    </div>
+                    <div className="espacamento">
+                        <span>Descrição</span>
+                        <textarea value={descricao} onChange={e => setDescricao(e.target.value)}/>
+                    </div>
+                    <div className="espacamento">
+                        <span>Quantidade de pessoas afetadas</span>
+                        <input value={qtd_pessoas} onChange={e => setQtdPessoas(e.target.value)}/>
+                    </div>
+                    <div className="espacamento">
+                        <span>Local</span>
+                        <input placeholder="Cidade / UF" value={local} onChange={e => setLocal(e.target.value)}/>
+                    </div>
                     <button type="submit" className="button">Cadastrar</button>
                 </form>
             </div>

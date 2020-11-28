@@ -62,6 +62,15 @@
     justify-content: space-around;
 }
 
+.detalhe-container .card .card-content .card-content__descricao {
+    width: 45%;
+    max-width: 60%;
+    word-break: break-all;
+}
+.detalhe-container .card .card-content .card-content__descricao p {
+    text-align: justify;
+}
+
 .detalhe-container .card label {
     font-size: 14px;
     font-weight: bold;

@@ -32,6 +32,17 @@
 .container form {
     width: 100%;
     max-width: 450px;
+    text-align: start;
+}
+
+.container form .espacamento {
+    margin-top: 10px;
+}
+
+.container form span {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
 }
 
 .container form input,
