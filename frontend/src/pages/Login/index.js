@@ -16,7 +16,7 @@ const Login = () => {
             localStorage.setItem('id', id);
             localStorage.setItem('nomeUsuario', response.data.nome);
 
-            history.goBack();
+            history.push('/');
         } catch {
             alert('Falha no login.');
         }

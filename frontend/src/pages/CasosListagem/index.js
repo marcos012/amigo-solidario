@@ -13,11 +13,12 @@ const CasosListagem = () => {
     const headers = { headers: { Authorization: id } };
     const history = useHistory();
 
-    useEffect(() => {
-        !!id 
-            ? api.get('perfil', headers).then(response => setCasos(response.data))
-            : api.get('casos').then(response => setCasos(response.data));
+    function getCasos() {
+        api.get('casos').then(response => setCasos(response.data));
+    }
 
+    useEffect(() => {
+        getCasos();
     }, [id]);
 
     async function handleDeleteIncident(id) {
@@ -47,6 +48,16 @@ const CasosListagem = () => {
         history.push('/login');
     }
 
+    function handleFilterCasos() {
+        api.get('perfil', headers).then(response => setCasos(response.data));
+    }
+
+    function handleFilterCasos(e) {
+        e.target.value === 'meus-casos' 
+            ? api.get('perfil', headers).then(response => setCasos(response.data))
+            : getCasos()
+    }
+
     return ( 
         <div className="listagem-container">
             <header>
@@ -55,14 +66,16 @@ const CasosListagem = () => {
                 {id && (<span onClick={handleLogout}>Sair <FiPower size={18} color="#1d7fca" /></span>)}
 
                 {!id && (<span onClick={handleLogin}>Entrar <FiLogIn size={18} color="#1d7fca" /></span>)}
-
-                
             </header>
 
             <div className="title-container">
-                <h2>Casos encontrados:</h2>
+                <select onChange={handleFilterCasos}>
+                    <option value='todos'>Todos</option>
+                    <option value='meus-casos'>Meus casos</option>
+                </select>
                 {id && (<Link className="button" to="/casos/new">Cadastrar novo caso</Link>)}
             </div>
+            <h2>Casos encontrados:</h2>
 
             <ul>
                 {casos.map(caso => (
@@ -72,9 +85,9 @@ const CasosListagem = () => {
 
                         <strong>Descrição:</strong>
                         <p>{caso.descricao}</p>
-                        <strong>Quantidade de pessoas afetadas:</strong>
-                        <p>{caso.qtd_pessoas}</p>
-                        {id && (
+                        <strong>Local:</strong>
+                        <p>{caso.local}</p>
+                        {id && caso.id_user === id && (
                             <button onClick={() => handleDeleteIncident(caso.id)}>
                             <FiTrash2 size={20} color="#a8a8b3" />
                             </button>
