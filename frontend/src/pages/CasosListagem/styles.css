@@ -47,7 +47,20 @@
     margin-bottom: 24px;
 }
 
+.listagem-container .title-container select {
+    height: 35px;
+    border: solid 2px #1d7fca;
+    background: #fff;
+    color: #1d7fca;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-top: 16px;
+    font-size: 18px;
+}
+
+
 .listagem-container ul {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 24px;
