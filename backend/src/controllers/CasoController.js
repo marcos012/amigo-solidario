@@ -10,6 +10,7 @@ module.exports = {
                 'casos.titulo',
                 'casos.descricao',
                 'casos.qtd_pessoas',
+                'casos.local',
                 'usuarios.nome',
                 'usuarios.email',
                 'usuarios.whatsapp',
@@ -43,10 +44,10 @@ module.exports = {
     },
 
     async create(req, res) {
-        const { titulo, descricao, qtd_pessoas } = req.body;
+        const { titulo, descricao, qtd_pessoas, local } = req.body;
         const id_user = req.headers.authorization;
     
-        const [id] = await connection('casos').insert({titulo, descricao, qtd_pessoas, id_user });
+        const [id] = await connection('casos').insert({titulo, descricao, qtd_pessoas, local, id_user });
         
         return res.json({ id });
     },
