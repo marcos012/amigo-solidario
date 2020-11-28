@@ -7,6 +7,7 @@ import { FiPower, FiTrash2, FiLogIn } from 'react-icons/fi'
 
 const CasosListagem = () => {
     const [casos, setCasos] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const id = localStorage.getItem('id');
     const nomeUsuario = localStorage.getItem('nomeUsuario');
@@ -14,7 +15,10 @@ const CasosListagem = () => {
     const history = useHistory();
 
     function getCasos() {
-        api.get('casos').then(response => setCasos(response.data));
+        setLoading(true)
+        api.get('casos')
+            .then(response => setCasos(response.data))
+            .finally(() => setLoading(false));
     }
 
     useEffect(() => {
@@ -29,7 +33,7 @@ const CasosListagem = () => {
                 }
             });
 
-            setCasos(casos.filter(incident => incident.id !== id));
+            setCasos(casos.filter(caso => caso.id !== id));
         } catch (error) {
             alert('Eror ao deletar caso');
         }
@@ -48,13 +52,14 @@ const CasosListagem = () => {
         history.push('/login');
     }
 
-    function handleFilterCasos() {
-        api.get('perfil', headers).then(response => setCasos(response.data));
-    }
 
     function handleFilterCasos(e) {
+        setLoading(true);
+
         e.target.value === 'meus-casos' 
-            ? api.get('perfil', headers).then(response => setCasos(response.data))
+            ? api.get('perfil', headers)
+                .then(response => setCasos(response.data))
+                .finally(() => setLoading(false))
             : getCasos()
     }
 
@@ -96,8 +101,12 @@ const CasosListagem = () => {
                 ))}
             </ul>
 
-            {casos && casos.length === 0 && (
+            {casos && casos.length === 0 && !loading && (
                 <p className="label-sem-itens">Nenhum item encontrado</p>
+            )}
+
+            {loading && (
+                <p className="label-sem-itens">Carregando...</p>
             )}
         </div>
     );

@@ -31,11 +31,11 @@ const CasoDetalhe = (props) => {
                                 <label>Descricao:</label>
                                 <p className="caso-data">{caso?.descricao}</p>
                             </div>
-                            <div>
-                                <label>Pessoas afetadas:</label>
+                            <div className="justify">
+                                <label>Pessoas afetadas: </label>
                                 <p className="caso-data">{caso?.qtd_pessoas}</p>
-
-                                <label>Local:</label>
+                                <br />
+                                <label>Local: </label>
                                 <p className="caso-data">{caso?.local}</p>
 
                             </div>
@@ -43,14 +43,14 @@ const CasoDetalhe = (props) => {
                     </div>
                     <div className="card">
                         <div className="card-content">
-                            <div className="justify">
+                            <div className="justify top-30">
                                 <label>Nome do solicitante: </label>
                                 <span className="caso-data">{caso?.nome}</span>
                                 <br />
                                 <label>Local: </label>
                                 <span className="caso-data">{caso?.cidade} / {caso?.uf}</span>
                             </div>
-                            <div className="justify">
+                            <div className="justify top-30">
                                 <label>E-mail: </label>
                                 <span className="caso-data">{caso?.email}</span>
                                 <br />
