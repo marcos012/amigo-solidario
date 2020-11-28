@@ -28,6 +28,8 @@ routes.get('/casos', celebrate({
     })
 }), CasoController.index);
 
+routes.get('/casos/:id', CasoController.show);
+
 //TODO: validar
 routes.post('/casos', CasoController.create);
 

@@ -1,13 +1,37 @@
 const connection = require('../database/connection')
 
 module.exports = {
+    async show(req, res) {
+        const { id } = req.params;
+
+        const caso = await connection('casos')
+            .join('usuarios', 'casos.id_user', '=', 'usuarios.id')
+            .select([
+                'casos.titulo',
+                'casos.descricao',
+                'casos.qtd_pessoas',
+                'usuarios.nome',
+                'usuarios.email',
+                'usuarios.whatsapp',
+                'usuarios.cidade',
+                'usuarios.uf'
+            ])
+            .where('casos.id', id).first();
+
+        if (!caso) {
+            return res.status(400).json({ message: 'Caso não encontrada' });
+        }
+
+        return res.json(caso);
+
+    },
 
     async index(req, res) {
         const { page = 1 } = req.query;
 
         const [count] = await connection('casos').count();
 
-        const users = await connection('casos')
+        const casos = await connection('casos')
             .join('usuarios', 'usuarios.id', '=', 'casos.id_user')
             .limit(5)
             .offset((page - 1) * 5)
@@ -15,7 +39,7 @@ module.exports = {
 
         res.header('X-Total-Count', count['count(*)']);
     
-        return res.json(users);
+        return res.json(casos);
     },
 
     async create(req, res) {

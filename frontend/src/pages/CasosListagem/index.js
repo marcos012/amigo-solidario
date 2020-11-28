@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css'
-import logoImg from '../../assets/logo.svg'
 import api from '../../services/api'
 
 import { Link, useHistory } from 'react-router-dom';
@@ -38,6 +37,10 @@ const CasosListagem = () => {
         }
     }
 
+    function handleNavigateToDetail(id) {
+        history.push(`/casos/${id}`)
+    }
+
     function handleLogout() {
         localStorage.clear();
         history.push('/login');
@@ -66,7 +69,7 @@ const CasosListagem = () => {
 
             <ul>
                 {casos.map(caso => (
-                    <li key={caso.id}>
+                    <li key={caso.id} onClick={() => handleNavigateToDetail(caso.id)}>
                         <strong>Caso:</strong>
                         <p>{caso.titulo}</p>
 

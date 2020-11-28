@@ -1,10 +1,8 @@
-import React, { useState }from 'react';
-import './styles.css'
-import logoImg from '../../assets/logo.svg'
-import api from '../../services/api'
-
+import React, { useState } from 'react';
+import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi'
+import api from '../../services/api';
+import './styles.css';
 
 const CasoFormulario = () => {
     const [titulo, setTitulo] = useState('');
@@ -32,10 +30,10 @@ const CasoFormulario = () => {
     return (
         <div className="container">
             <div className="content">
-                    <Link className="back-link" to="/">
-                        <FiArrowLeft size={24} color="#1d7fca" />
-                    </Link>
-                    <h1 className="title">Cadastrar novo caso</h1>
+                <Link className="back-link" to="/">
+                    <FiArrowLeft size={24} color="#1d7fca" />
+                </Link>
+                <h1 className="title">Cadastrar novo caso</h1>
                 <form onSubmit={cadastrarNovoCaso}>
                     <input placeholder="Título do caso" value={titulo} onChange={e => setTitulo(e.target.value)}/>
                     <textarea placeholder="Descrição" value={descricao} onChange={e => setDescricao(e.target.value)}/>
