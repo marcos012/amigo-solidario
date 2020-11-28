@@ -10,18 +10,15 @@ const CasosListagem = () => {
 
     const id = localStorage.getItem('id');
     const nomeUsuario = localStorage.getItem('nomeUsuario');
-
+    const headers = { headers: { Authorization: id } };
     const history = useHistory();
 
-    useEffect(() => { 
-        api.get('perfil', {
-            headers: {
-                Authorization: id
-            }
-        }).then(response => {
-            setCasos(response.data);
-        })
-    }, [id])
+    useEffect(() => {
+        !!id 
+            ? api.get('perfil', headers).then(response => setCasos(response.data))
+            : api.get('casos').then(response => setCasos(response.data));
+
+    }, [id]);
 
     async function handleDeleteIncident(id) {
         try {
@@ -37,8 +34,8 @@ const CasosListagem = () => {
         }
     }
 
-    function handleNavigateToDetail(id) {
-        history.push(`/casos/${id}`)
+    function handleNavigateToDetail(idCaso) {
+        id ? history.push(`/casos/${idCaso}`) : history.push('/login')
     }
 
     function handleLogout() {
@@ -77,10 +74,11 @@ const CasosListagem = () => {
                         <p>{caso.descricao}</p>
                         <strong>Quantidade de pessoas afetadas:</strong>
                         <p>{caso.qtd_pessoas}</p>
-
-                        <button onClick={() => handleDeleteIncident(caso.id)}>
-                        <FiTrash2 size={20} color="#a8a8b3" />
-                        </button>
+                        {id && (
+                            <button onClick={() => handleDeleteIncident(caso.id)}>
+                            <FiTrash2 size={20} color="#a8a8b3" />
+                            </button>
+                        )}
                     </li>
                 ))}
             </ul>

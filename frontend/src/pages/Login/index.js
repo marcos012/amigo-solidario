@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { FiLogIn } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import './styles.css';
-
-
 
 const Login = () => {
     const [id, setId] = useState('');
@@ -16,10 +13,10 @@ const Login = () => {
 
         try {
             const response = await api.post('login', { id });
-            localStorage.setItem('id', id)
-            localStorage.setItem('nomeUsuario', response.data.nome)
+            localStorage.setItem('id', id);
+            localStorage.setItem('nomeUsuario', response.data.nome);
 
-            history.push('/')
+            history.goBack();
         } catch {
             alert('Falha no login.');
         }
@@ -35,7 +32,6 @@ const Login = () => {
 
                     <Link className="back-link" to="/register">
                         É novo aqui? Cadastre-se :)
-                        {/* <FiLogIn size={16} color="#1d7fca" /> */}
                     </Link>
                 </form>
 
