@@ -11,6 +11,11 @@
 
 }
 
+.container .content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
 .container h1 {
     font-size: 32px;
     width: 100%;
@@ -35,6 +40,10 @@
 }
 
 @media (max-width: 735px) {
+    .container form {
+        width: 90%;
+    }
+
     .container a {
         position: unset;
         display: flex;

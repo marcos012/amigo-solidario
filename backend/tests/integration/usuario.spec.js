@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../../src/app')
 const connection = require('../../src/database/connection')
 
-describe('ong', () => {
+describe('usuario', () => {
     beforeEach(async () => {
         await connection.migrate.rollback();
         await connection.migrate.latest();
@@ -12,10 +12,10 @@ describe('ong', () => {
         await connection.destroy();
     });
 
-    it('should be able to create a new ONG', async () => {
+    it('deve criar usuario', async () => {
         const response = await request(app)
-            .post('/ongs')
-            .send({name: 'APAD', email: 'apad@apad.com', whatsapp: '51982346512', city: 'Porto Alegre', uf: 'RS'});
+            .post('/usuarios')
+            .send({name: 'Marcos', email: 'marcos@gmail.com', whatsapp: '51982346512', city: 'Porto Alegre', uf: 'RS'});
 
         expect(response.body).toHaveProperty('id');
         expect(response.body.id).toHaveLength(8);
