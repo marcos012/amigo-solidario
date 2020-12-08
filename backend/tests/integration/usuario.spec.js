@@ -15,7 +15,7 @@ describe('usuario', () => {
     it('deve criar usuario', async () => {
         const response = await request(app)
             .post('/usuarios')
-            .send({name: 'Marcos', email: 'marcos@gmail.com', whatsapp: '51982346512', city: 'Porto Alegre', uf: 'RS'});
+            .send({nome: 'Marcos', email: 'marcos@gmail.com', whatsapp: '51982346512', cidade: 'Porto Alegre', uf: 'RS'});
 
         expect(response.body).toHaveProperty('id');
         expect(response.body.id).toHaveLength(8);

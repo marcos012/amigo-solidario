@@ -20,7 +20,7 @@ module.exports = {
             .where('casos.id', id).first();
 
         if (!caso) {
-            return res.status(400).json({ message: 'Caso não encontrada' });
+            return res.status(404).json({ message: 'Caso não encontrado' });
         }
 
         return res.json(caso);
