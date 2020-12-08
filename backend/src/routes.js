@@ -8,7 +8,6 @@ const LoginController = require('./controllers/LoginController');
 
 const routes = express.Router();
 
-//TODO: validar
 routes.post('/login', LoginController.create);
 
 routes.get('/usuarios', UsuarioController.index);
@@ -30,8 +29,14 @@ routes.get('/casos', celebrate({
 
 routes.get('/casos/:id', CasoController.show);
 
-//TODO: validar
-routes.post('/casos', CasoController.create);
+routes.post('/casos', celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        titulo: Joi.string().required(),
+        descricao: Joi.string().required(),
+        qtd_pessoas: Joi.number().required(),
+        local: Joi.string().required(),
+    })
+}), CasoController.create);
 
 routes.delete('/casos/:id', celebrate({
     [Segments.PARAMS]: Joi.object().keys({
