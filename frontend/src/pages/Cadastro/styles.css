@@ -33,12 +33,42 @@
     margin-top: 8px;
 }
 
+.container-cadastro .content label {
+    font-size: 16px;
+    display: block;
+    text-align: start;
+    margin-bottom: 7px;
+}
+
 .container-cadastro .content form .input-group {
     display: flex;
 }
 
 .container-cadastro .content form .input-group input + input {
     margin-left: 8px;
+}
+
+.copy-input-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.copy-input-group .copy-clipboard-input {
+    width: 80%;
+    height: 60px;
+    color: #333;
+    border: 1px solid #dcdce6;
+    border-radius: 8px;
+    padding: 0 24px;
+}
+
+.copy-input-group button {
+    width: 17%;
+    border: 1px solid #dcdce6;
+    border-radius: 8px;
+    background: #1d7fca;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 @media (max-width: 735px) {

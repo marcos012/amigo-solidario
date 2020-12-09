@@ -28,6 +28,7 @@ const PhoneInput = (props) => {
         mask={phoneMask}
         placeholder={props.placeholder}
         id="phone-input"
+        disabled={props.disabled}
         onChange={props.handleNumberChange}
         className="input"
     />;

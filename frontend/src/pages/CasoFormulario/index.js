@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications'
 import api from '../../services/api';
 import './styles.css';
 
@@ -13,6 +14,7 @@ const CasoFormulario = () => {
     const id = localStorage.getItem('id');
 
     const history = useHistory();
+    const { addToast } = useToasts();
 
     async function cadastrarNovoCaso(e) {
         e.preventDefault();
@@ -22,9 +24,17 @@ const CasoFormulario = () => {
             await api.post('casos', data, {
                 headers: { Authorization: id }
             });
+            addToast('Caso cadastrado com sucesso!', {
+                appearance: 'success',
+                autoDismiss: true,
+            });
+
             history.push('/')
         } catch {
-            alert('Erro no cadastro, tente novamente');
+            addToast('Erro no cadastro, tente novamente!', {
+                appearance: 'error',
+                autoDismiss: true,
+            });
         }
     }
 
