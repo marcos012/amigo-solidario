@@ -30,11 +30,13 @@ const CasoFormulario = () => {
 
     return (
         <div className="container">
-            <div className="content">
+            <div className="header-action">
                 <Link className="back-link" to="/">
                     <FiArrowLeft size={24} color="#1d7fca" />
                 </Link>
                 <h1 className="title">Cadastrar novo caso</h1>
+            </div>
+            <div className="content">
                 <form onSubmit={cadastrarNovoCaso}>
                     <div className="espacamento">
                         <span>Título</span>
@@ -50,7 +52,7 @@ const CasoFormulario = () => {
                     </div>
                     <div className="espacamento">
                         <span>Local</span>
-                        <input placeholder="Cidade / UF" value={local} onChange={e => setLocal(e.target.value)}/>
+                        <input placeholder="Rua... - Cidade / UF" value={local} onChange={e => setLocal(e.target.value)}/>
                     </div>
                     <button type="submit" className="button">Cadastrar</button>
                 </form>

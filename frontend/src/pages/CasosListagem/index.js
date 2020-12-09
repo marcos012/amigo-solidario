@@ -25,14 +25,17 @@ const CasosListagem = () => {
         getCasos();
     }, [id]);
 
-    async function handleDeleteIncident(id) {
-        try {
-            await api.delete(`casos/${id}`, {
-                headers: {
-                    Authorization: id
-                }
-            });
+    async function handleDeleteIncident(id, event) {
+        event.stopPropagation();
 
+        const confirmação = window.confirm("Deseja deletar o caso?");
+
+        if (!confirmação) {
+            return;
+        }
+
+        try {
+            await api.delete(`casos/${id}`, headers);
             setCasos(casos.filter(caso => caso.id !== id));
         } catch (error) {
             alert('Eror ao deletar caso');
@@ -93,8 +96,8 @@ const CasosListagem = () => {
                         <strong>Local:</strong>
                         <p>{caso.local}</p>
                         {id && caso.id_user === id && (
-                            <button onClick={() => handleDeleteIncident(caso.id)}>
-                            <FiTrash2 size={20} color="#a8a8b3" />
+                            <button onClick={e => handleDeleteIncident(caso.id, e)}>
+                                <FiTrash2 size={20} color="#a8a8b3" />
                             </button>
                         )}
                     </li>

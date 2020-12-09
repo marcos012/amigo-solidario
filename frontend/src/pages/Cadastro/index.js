@@ -28,7 +28,7 @@ const Cadastro = () => {
     }
 
     return ( 
-        <div className="container">
+        <div className="container-cadastro">
             <div className="content">
                 <Link className="back-link" to="/login">
                     <FiArrowLeft size={24} color="#1d7fca" />
