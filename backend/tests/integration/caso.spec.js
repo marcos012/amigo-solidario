@@ -6,7 +6,7 @@ describe('caso', () => {
     beforeEach(async () => {
         await connection.migrate.rollback();
         await connection.migrate.latest();
-        insertUser();
+        await insertUser();
     });
 
     afterAll(async () => {

@@ -53,7 +53,7 @@ module.exports = {
     },
     
     async delete(req, res) {
-        const { id,  } = req.params;
+        const { id } = req.params;
         const id_user = req.headers.authorization;
 
         const caso = await connection('casos')
@@ -61,7 +61,7 @@ module.exports = {
             .select('id_user')
             .first();
 
-        if(caso.id_user !== id_user) {
+        if (caso.id_user !== id_user) {
             return res.status(401).json({ error: 'Ação não permitida'});
         }
 
