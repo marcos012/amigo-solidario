@@ -72,6 +72,7 @@
     padding: 24px;
     border-radius: 8px;
     position: relative;
+    cursor: pointer;
 }
 
 .listagem-container ul li button {
@@ -111,8 +112,8 @@
 }
 
 .modal {
-    width: 50vw;
-    height: 35vh;
+    width: 30vw;
+    height: 20vh;
     background: #f3f3f3;
     border-radius: 8px;
     display: flex;
@@ -124,7 +125,7 @@
 .modal .modal-buttons-container {
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    width: 65%;
 }
 
 .modal .modal-button {
@@ -146,6 +147,17 @@
 
 .modal .modal-button.secundary {
     background: #797b7c;
+}
+
+@media (max-width: 1030px) {
+    .modal {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .modal .modal-buttons-container {
+        width: 80%;
+    }
 }
 
 @media (max-width: 735px) {

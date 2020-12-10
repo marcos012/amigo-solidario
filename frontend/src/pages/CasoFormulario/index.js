@@ -11,6 +11,8 @@ const CasoFormulario = () => {
     const [qtd_pessoas, setQtdPessoas] = useState('');
     const [local, setLocal] = useState('');
 
+    const [loading, setLoading] = useState(false);
+
     const id = localStorage.getItem('id');
 
     const history = useHistory();
@@ -18,6 +20,7 @@ const CasoFormulario = () => {
 
     async function cadastrarNovoCaso(e) {
         e.preventDefault();
+        setLoading(true)
         const data = { titulo, descricao, qtd_pessoas, local };
 
         try {
@@ -28,6 +31,7 @@ const CasoFormulario = () => {
                 appearance: 'success',
                 autoDismiss: true,
             });
+            setLoading(false)
 
             history.push('/')
         } catch {
@@ -35,6 +39,7 @@ const CasoFormulario = () => {
                 appearance: 'error',
                 autoDismiss: true,
             });
+            setLoading(false)
         }
     }
 
@@ -64,7 +69,7 @@ const CasoFormulario = () => {
                         <span>Local</span>
                         <input placeholder="Rua... - Cidade / UF" value={local} onChange={e => setLocal(e.target.value)}/>
                     </div>
-                    <button type="submit" className="button">Cadastrar</button>
+                    <button type="submit" className="button" disabled={loading}>{loading ? 'Carregando...' : 'Cadastrar'}</button>
                 </form>
             </div>
         </div>

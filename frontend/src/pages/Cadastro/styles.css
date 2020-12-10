@@ -76,8 +76,16 @@
         position: unset;
         display: flex;
         margin-top: 20px;
+        margin-left: 20px;
     }
     .container-cadastro h1 {
         margin: 7% 0 9% 0;
+    }
+    .container-cadastro form {
+        display: flex;
+        flex-direction: column;
+        margin-right: auto;
+        margin-left: auto;
+        width: 90%;
     }
 }

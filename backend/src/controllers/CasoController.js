@@ -47,9 +47,13 @@ module.exports = {
         const { titulo, descricao, qtd_pessoas, local } = req.body;
         const id_user = req.headers.authorization;
     
-        const [id] = await connection('casos').insert({titulo, descricao, qtd_pessoas, local, id_user });
-        
-        return res.json({ id });
+        try {
+            const caso = await connection('casos').insert({titulo, descricao, qtd_pessoas, local, id_user });
+            return res.json({id: caso[0]});
+        } catch (e) {
+            console.log(e);
+            return res.status(500).send();
+        }
     },
     
     async delete(req, res) {
