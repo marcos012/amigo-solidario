@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
+import { maskPhone } from '../../components/PhoneInput'
 import './styles.css';
 
 const CasoDetalhe = (props) => {
@@ -12,6 +13,8 @@ const CasoDetalhe = (props) => {
     useEffect(() => {
         api.get(`casos/${id}`).then(res => setCaso(res.data));
     }, [id])
+
+    const telefoneFormatado = maskPhone(caso?.whatsapp);
 
     return ( 
         <div className="detalhe-container">
@@ -55,7 +58,7 @@ const CasoDetalhe = (props) => {
                                 <span className="caso-data">{caso?.email}</span>
                                 <br />
                                 <label>Whatsapp: </label>
-                                <span className="caso-data">{caso?.whatsapp}</span>
+                                <span className="caso-data">{telefoneFormatado}</span>
                             </div>
                         </div>
                     </div>

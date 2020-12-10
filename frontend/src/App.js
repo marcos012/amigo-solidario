@@ -1,11 +1,17 @@
 import React from 'react';
-import './global.css'
+import { ToastProvider } from 'react-toast-notifications';
 
 import Routes from './routes';
+import './global.css'
+
 
 function App() {
   return (
-    <Routes />
+    <div>
+      <ToastProvider>
+        <Routes />
+      </ToastProvider>
+    </div>
   );
 }
 

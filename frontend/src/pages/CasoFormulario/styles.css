@@ -8,18 +8,24 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
+    justify-content: unset;
+}
 
+.container .header-action {
+    width: 100%;
 }
 
 .container .content {
-    align-items: center;
+    width: 100%;
+    max-width: 95%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
+
 .container h1 {
     font-size: 32px;
     width: 100%;
-    margin: 21% 0 9% 0;
+    margin: 8% 0 5% 0;
 }
 
 .container a {
@@ -50,7 +56,7 @@
     margin-top: 8px;
 }
 
-@media (max-width: 735px) {
+@media (max-width: 768px) {
     .container form {
         width: 90%;
     }
@@ -58,6 +64,7 @@
     .container a {
         position: unset;
         display: flex;
+        margin-left: 30px;
         margin-top: 20px;
     }
     .container h1 {

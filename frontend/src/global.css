@@ -63,6 +63,13 @@ form textarea {
     filter: brightness(90%);
 }
 
+button:disabled,
+button[disabled]{
+    border: 1px solid #dcdce6;
+    background-color: unset;
+    color: #777777;
+}
+
 .back-link {
     display: flex;
     align-items: center;

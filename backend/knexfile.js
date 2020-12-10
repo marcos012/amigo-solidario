@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   development: {
     client: 'sqlite3',
@@ -5,30 +7,21 @@ module.exports = {
       filename: './dev.sqlite3'
     },
     migrations: {
-      directory: './src/database/migrations',
+      directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     }
   },
   test: {
     client: "sqlite3",
     connection: ":memory:",
-    useNullAsDefault: true,
     migrations: {
-      directory: './src/database/migrations',
+      directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     },
   },
   production: {
-    client: 'postgresql',
-    connection: {
-      database: process.env.DATABASE,
-      user:     process.env.DB_USER,
-      password: process.env.DB_PASSWORD
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
     migrations: {
-      directory: './src/database/migrations',
+      directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     }
   }
 

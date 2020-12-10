@@ -47,13 +47,17 @@ module.exports = {
         const { titulo, descricao, qtd_pessoas, local } = req.body;
         const id_user = req.headers.authorization;
     
-        const [id] = await connection('casos').insert({titulo, descricao, qtd_pessoas, local, id_user });
-        
-        return res.json({ id });
+        try {
+            const caso = await connection('casos').insert({titulo, descricao, qtd_pessoas, local, id_user });
+            return res.json({id: caso[0]});
+        } catch (e) {
+            console.log(e);
+            return res.status(500).send();
+        }
     },
     
     async delete(req, res) {
-        const { id,  } = req.params;
+        const { id } = req.params;
         const id_user = req.headers.authorization;
 
         const caso = await connection('casos')
@@ -61,7 +65,7 @@ module.exports = {
             .select('id_user')
             .first();
 
-        if(caso.id_user !== id_user) {
+        if (caso.id_user !== id_user) {
             return res.status(401).json({ error: 'Ação não permitida'});
         }
 
