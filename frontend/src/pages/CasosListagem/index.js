@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import api from '../../services/api'
+import './styles.css'
 
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2, FiLogIn } from 'react-icons/fi'
@@ -25,15 +27,33 @@ const CasosListagem = () => {
         getCasos();
     }, [id]);
 
-    async function handleDeleteIncident(id, event) {
+    function openConfirmationModal(id, event) {
         event.stopPropagation();
 
-        const confirmação = window.confirm("Deseja deletar o caso?");
+        confirmAlert({
+            customUI: ({ onClose }) => {
+              return (
+                <div className="modal">
+                  <h1>Deseja deletar o caso?</h1>
+                  <div className="modal-buttons-container">
+                    <button
+                        className="modal-button"
+                        onClick={() => {
+                            handleDeleteCaso(id);
+                            onClose();
+                        }}
+                    >
+                        Sim
+                    </button>
+                    <button className="modal-button secundary"onClick={onClose}>Não</button>
+                  </div>
+                </div>
+              );
+            }
+        });
+    }
 
-        if (!confirmação) {
-            return;
-        }
-
+    async function handleDeleteCaso(id) {
         try {
             await api.delete(`casos/${id}`, headers);
             setCasos(casos.filter(caso => caso.id !== id));
@@ -96,7 +116,7 @@ const CasosListagem = () => {
                         <strong>Local:</strong>
                         <p>{caso.local}</p>
                         {id && caso.id_user === id && (
-                            <button onClick={e => handleDeleteIncident(caso.id, e)}>
+                            <button onClick={e => openConfirmationModal(caso.id, e)}>
                                 <FiTrash2 size={20} color="#a8a8b3" />
                             </button>
                         )}
